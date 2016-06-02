@@ -40,7 +40,7 @@ turn state = do
   putStrLn $ describe state
   putStrLn "What do you want to do? Eat | Sleep"
   command <- getLine
-  turn $ update initial (read command :: Action)
+  turn $ update state (read command :: Action)
 
 main :: IO String
 main = do turn initial
