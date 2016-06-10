@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wall #-}
 module HW02 where
-
+import Data.List
 -- Mastermind -----------------------------------------
 
 -- A peg can be one of six colors
@@ -38,7 +38,7 @@ countColors code = map (\x -> length $ filter (==x) code)  colors
 
 -- Count number of matches between the actual code and the guess
 matches :: Code -> Code -> Int
-matches = undefined
+matches a b = length $ intersect a b
 
 -- Exercise 3 -----------------------------------------
 
