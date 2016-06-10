@@ -50,3 +50,8 @@ calcBmis xs = [bmi | (w,h) <- xs, let bmi = w/h^2]
 
 main = do line <- fmap reverse getLine
           putStrLn $ "You said " ++ line ++ " backwards"
+
+
+foobar :: [Integer] -> Integer
+foobar = sum . map ((+2) . (*7)) . filter (>3)
+
