@@ -23,12 +23,9 @@ colors = [Red, Green, Blue, Yellow, Orange, Purple]
 
 -- Get the number of exact matches between the actual code and the guess
 exactMatches :: Code -> Code -> Int
-exactMatches (a:as) (b:bs)
-  | a == b = 1 + exactMatches as bs
-  | otherwise = exactMatches as bs
-exactMatches [] [] = 0
-exactMatches (_:_) [] = 0
-exactMatches [] (_:_) = 0
+exactMatches a b = length $ filter (uncurry (==)) $ zip a b
+
+-- exactMatches a b = length $ filter (\ (a', b') -> a' == b') $ zip a b
 
 -- Exercise 2 -----------------------------------------
 
@@ -38,7 +35,7 @@ countColors code = map (\x -> length $ filter (==x) code)  colors
 
 -- Count number of matches between the actual code and the guess
 matches :: Code -> Code -> Int
-matches a b = length $ intersect a b
+matches a b = length $ nub $ intersect a b
 
 -- Exercise 3 -----------------------------------------
 
@@ -50,7 +47,8 @@ getMove a b = let exact = exactMatches a b in
 -- Exercise 4 -----------------------------------------
 
 isConsistent :: Move -> Code -> Bool
-isConsistent = undefined
+isConsistent (Move guess exact nonexact) code = let (Move _ e' n') = getMove guess code in
+  exact == e' && nonexact == n'
 
 -- Exercise 5 -----------------------------------------
 
