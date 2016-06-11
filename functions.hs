@@ -1,3 +1,5 @@
+import Data.List
+
 doubleMe x = x + x
 doubleUs x y = doubleMe x + doubleMe y
 
@@ -55,3 +57,5 @@ main = do line <- fmap reverse getLine
 foobar :: [Integer] -> Integer
 foobar = sum . map ((+2) . (*7)) . filter (>3)
 
+foo :: [GHC.Prim.Any] -> Int
+foo = length . intersect

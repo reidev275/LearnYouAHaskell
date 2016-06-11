@@ -44,7 +44,8 @@ matches a b = length $ intersect a b
 
 -- Construct a Move from a guess given the actual code
 getMove :: Code -> Code -> Move
-getMove = undefined
+getMove a b = let exact = exactMatches a b in
+  Move b exact (matches a b - exact)
 
 -- Exercise 4 -----------------------------------------
 
