@@ -34,8 +34,9 @@ countColors code = map (\x -> length $ filter (==x) code)  colors
 
 -- Count number of matches between the actual code and the guess
 matches :: Code -> Code -> Int
-matches a b = length $ nub $ intersect a b
--- incorrect
+
+matches a b =
+  sum $ fmap (uncurry min) $ zip (countColors a) (countColors b)
 
 -- Exercise 3 -----------------------------------------
 
